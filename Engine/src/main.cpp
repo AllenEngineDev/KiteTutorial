@@ -1,6 +1,7 @@
 #include <iostream>
+#include "Core.h"
 
-__declspec(dllexport) void Hey()
+KITE_API void Hey()
 {
     std::cout << "Hey!" << std::endl;
 }

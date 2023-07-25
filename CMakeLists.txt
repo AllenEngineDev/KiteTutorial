@@ -1,3 +1,4 @@
+set(ENGINE_DIR "Engine")
 set(ENGINE_SOURCE_DIR "Engine/src")
 set(ENGINE_OUTPUT_LIB_DIR "${CMAKE_BINARY_DIR}/Kite/lib")
 set(ENGINE_OUTPUT_DLL_DIR "${CMAKE_BINARY_DIR}/Kite/bin")
@@ -7,7 +8,7 @@ cmake_minimum_required(VERSION 3.10)
 project(KiteEngine)
 
 # Building the Kite Engine DLL
-add_library(Kite SHARED "${ENGINE_SOURCE_DIR}/main.cpp")
+add_library(Kite SHARED "${ENGINE_SOURCE_DIR}/Main.cpp")
 # Setting where the Kite Engine DLL should be built.
 set_target_properties(Kite
     PROPERTIES
@@ -15,6 +16,8 @@ set_target_properties(Kite
     LIBRARY_OUTPUT_DIRECTORY "${ENGINE_OUTPUT_LIB_DIR}"
     RUNTIME_OUTPUT_DIRECTORY "${ENGINE_OUTPUT_DLL_DIR}"
 )
+
+target_compile_definitions(Kite PRIVATE KT_BUILD_DLL)
 
 # Add a custom target to copy the DLL after the executable is built
 # The DEPENDS commands mean that it will only be built after the Sandbox executable is built.
