@@ -1,5 +1,6 @@
 set(ENGINE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Engine")
 set(ENGINE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Engine/src")
+set(ENGINE_VENDOR_DIR "${ENGINE_DIR}/vendor")
 set(ENGINE_OUTPUT_LIB_DIR "${CMAKE_BINARY_DIR}/Kite/lib")
 set(ENGINE_OUTPUT_DLL_DIR "${CMAKE_BINARY_DIR}/Kite/bin")
 
@@ -26,6 +27,20 @@ target_compile_definitions(Kite PRIVATE KT_BUILD_DLL KT_PLATFORM_WINDOWS)
 
 # Include directories for the Engine/include/Kite.h
 target_include_directories(Kite PUBLIC ${ENGINE_SOURCE_DIR})
+
+# Precompiled headers
+target_precompile_headers(Kite PRIVATE "${ENGINE_SOURCE_DIR}/ktpch.h")
+
+# ---------- THIRD PARTY LIBRARIES ------------
+# Third party include directories
+target_include_directories(Kite PUBLIC "${ENGINE_VENDOR_DIR}/spdlog/include")
+
+# Third party library building
+add_subdirectory("${ENGINE_VENDOR_DIR}/spdlog")
+
+# Third party library linking
+target_link_libraries(Kite PRIVATE spdlog)
+# ---------------------------------------------------
 
 # Add a custom target to copy the DLL to the directory where the Sandbox target is built 
 add_custom_target(CopyKiteDLL ALL 

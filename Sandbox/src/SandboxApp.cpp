@@ -1,6 +1,5 @@
 #include "Kite.h"
 
-
 class Sandbox : public Kite::Application
 {
 public:

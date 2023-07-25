@@ -2,18 +2,18 @@
 
 #ifdef KT_PLATFORM_WINDOWS
 
-// To be defined in CLIENT
-Kite::Application* Kite::CreateApplication(); 
-
 int main(int argc, char** argv)
 {
     printf("[KITE]: ENTRY POINT REACHED\n");
+
+    Kite::Log::Init();
+    KT_WARN("Client Logger warning. Test variable set to {0}!", 5);
+    KT_CORE_ERROR("Core Logger error!");
+
     auto app = Kite::CreateApplication();
     app->Run();
     delete app;
 
     return 0;
 }
-#else
-    #error "Kite only supports Windows!"
 #endif  
