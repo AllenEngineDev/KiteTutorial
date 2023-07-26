@@ -10,7 +10,9 @@ project(KiteEngine)
 
 # Getting all the sources using GLOB
 file(GLOB ENGINE_SOURCES CONFIGURE_DEPENDS
-    "${ENGINE_SOURCE_DIR}/*.cpp")
+    "${ENGINE_SOURCE_DIR}/*.cpp"
+    "${ENGINE_SOURCE_DIR}/Events/*.cpp"
+    )
 
 # Building the Kite Engine DLL
 add_library(Kite SHARED ${ENGINE_SOURCES})
@@ -25,7 +27,7 @@ set_target_properties(Kite
 # Preprocessor definitions
 target_compile_definitions(Kite PRIVATE KT_BUILD_DLL KT_PLATFORM_WINDOWS)
 
-# Include directories for the Engine/include/Kite.h
+# Include directories for the Engine
 target_include_directories(Kite PUBLIC ${ENGINE_SOURCE_DIR})
 
 # Precompiled headers

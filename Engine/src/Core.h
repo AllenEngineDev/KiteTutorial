@@ -10,3 +10,5 @@
 #else
     #error "Kite only supports Windows! Define KT_PLATFORM_WINDOWS in preprocessor definitions and use Windows"
 #endif
+
+#define BIT(x) 1 << x
